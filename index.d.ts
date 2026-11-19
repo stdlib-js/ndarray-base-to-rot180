@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2026 The Stdlib Authors.
@@ -16,16 +16,12 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
 
-// MODULES //
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@esm/index.d.ts"/>
 
-var emptyLike = require( '@stdlib/ndarray-base-empty-like' );
-var rot180 = require( '@stdlib/ndarray-base-rot180' );
-var assign = require( '@stdlib/ndarray-base-assign' );
-
-
-// MAIN //
+import { typedndarray } from '@stdlib/types/ndarray';
+import { Collection } from '@stdlib/types/array';
 
 /**
 * Returns a new ndarray where an ndarray is rotated 180 degrees in a specified plane.
@@ -34,13 +30,9 @@ var assign = require( '@stdlib/ndarray-base-assign' );
 *
 * -   Each provided dimension index must reside on the interval `[-ndims, ndims-1]`.
 *
-* @param {ndarray} x - input array
-* @param {IntegerArray} dims - dimension indices defining the plane of rotation
-* @throws {RangeError} must provide exactly two dimension indices
-* @throws {RangeError} input ndarray must have two or more dimensions
-* @throws {RangeError} must provide valid dimension indices
-* @throws {Error} must provide unique dimension indices
-* @returns {ndarray} output array
+* @param x - input array
+* @param dims - dimension indices defining the plane of rotation
+* @returns output array
 *
 * @example
 * var array = require( '@stdlib/ndarray-array' );
@@ -51,23 +43,9 @@ var assign = require( '@stdlib/ndarray-base-assign' );
 * var y = toRot180( x, [ 0, 1 ] );
 * // returns <ndarray>[ [ 4, 3 ], [ 2, 1 ] ]
 */
-function toRot180( x, dims ) {
-	var out;
-	var xr;
-
-	// Create a rotated view of the input ndarray:
-	xr = rot180( x, dims, false );
-
-	// Create an output ndarray having the same shape and data type as the rotated view:
-	out = emptyLike( xr );
-
-	// Assign the elements of the rotated view to the output ndarray:
-	assign( [ xr, out ] );
-
-	return out;
-}
+declare function toRot180<T = unknown, U extends typedndarray<T> = typedndarray<T>>( x: U, dims: Collection<number> ): U;
 
 
 // EXPORTS //
 
-module.exports = toRot180;
+export = toRot180;
